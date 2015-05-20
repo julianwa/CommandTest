@@ -13,6 +13,9 @@
 
 class Command
 {
+    virtual std::string Name() {
+        return "name";
+    }
 };
 
 class ContinuousCommand

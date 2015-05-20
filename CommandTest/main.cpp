@@ -11,6 +11,7 @@
 #include "DinnerViewModel.h"
 #include "BreakfastViewModel.h"
 #include "MealCommands.h"
+#include "CommandDispatcher.h"
 
 using namespace std;
 
@@ -36,6 +37,18 @@ int main(int argc, const char * argv[]) {
         dineCommand->End();
         //dineCommand->Cancel();
         assert(dinner->BlockMode() == ViewModelBlockMode::None);
+    }
+    
+    printf("-------------\n");
+    
+    {
+        auto breakfast = BreakfastViewModel::New();
+        CommandDispatcher::Instance()->RegisterReceiver<SetTableCommand>(breakfast);
+        
+        auto dinner = DinnerViewModel::New();
+        CommandDispatcher::Instance()->RegisterReceiver<SetTableCommand>(dinner);
+        
+        CommandDispatcher::Instance()->Dispatch(make_shared<SetTableCommand>());
     }
     
     return 0;

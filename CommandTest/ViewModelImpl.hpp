@@ -20,7 +20,7 @@ class ViewModelImpl
 , public std::enable_shared_from_this<ViewModelImpl>
 {
     ViewModelBlockMode _BlockMode;
-    map<std::type_index, shared_ptr<ContinuousCommand>> _CurrentCommands;
+    unordered_map<std::type_index, shared_ptr<ContinuousCommand>> _CurrentCommands;
     
 public:
     

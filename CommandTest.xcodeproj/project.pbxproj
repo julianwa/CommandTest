@@ -11,6 +11,7 @@
 		3C48F88B1B042C1400F306D8 /* DinnerViewModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C48F8891B042C1400F306D8 /* DinnerViewModel.cpp */; };
 		3C48F88E1B042D4600F306D8 /* BreakfastViewModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C48F88C1B042D4600F306D8 /* BreakfastViewModel.cpp */; };
 		3CDE46EA1B04061F00AAF586 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CDE46E91B04061F00AAF586 /* main.cpp */; };
+		3CEFFCF91B0C4D180075A8CB /* CommandDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CEFFCF81B0C4D180075A8CB /* CommandDispatcher.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,8 +35,10 @@
 		3C48F88D1B042D4600F306D8 /* BreakfastViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BreakfastViewModel.h; sourceTree = "<group>"; };
 		3C48F88F1B042D5C00F306D8 /* MealCommands.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MealCommands.h; sourceTree = "<group>"; };
 		3C48F8901B042D8100F306D8 /* Command.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
+		3C6DE5011B0C3C1700590927 /* CommandDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandDispatcher.h; sourceTree = "<group>"; };
 		3CDE46E61B04061F00AAF586 /* CommandTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CDE46E91B04061F00AAF586 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		3CEFFCF81B0C4D180075A8CB /* CommandDispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandDispatcher.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +57,8 @@
 			children = (
 				3C48F8901B042D8100F306D8 /* Command.h */,
 				3C48F88F1B042D5C00F306D8 /* MealCommands.h */,
+				3C6DE5011B0C3C1700590927 /* CommandDispatcher.h */,
+				3CEFFCF81B0C4D180075A8CB /* CommandDispatcher.cpp */,
 			);
 			name = Command;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 			files = (
 				3C48F8881B04269600F306D8 /* ViewModelImpl.hpp in Sources */,
 				3CDE46EA1B04061F00AAF586 /* main.cpp in Sources */,
+				3CEFFCF91B0C4D180075A8CB /* CommandDispatcher.cpp in Sources */,
 				3C48F88E1B042D4600F306D8 /* BreakfastViewModel.cpp in Sources */,
 				3C48F88B1B042C1400F306D8 /* DinnerViewModel.cpp in Sources */,
 			);
@@ -196,7 +202,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -231,7 +237,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
