@@ -8,14 +8,16 @@
 
 #include "DinnerViewModel.h"
 #include "MealCommands.h"
+#include "CommandReceiverImpl.hpp"
 #include "ViewModelImpl.hpp"
+
 
 
 using namespace std;
 
 class DinnerViewModelImpl
 : public virtual DinnerViewModel
-, public virtual ViewModelImpl
+, public virtual ViewModelImpl<DinnerViewModelImpl>
 {
 public:
     
@@ -64,21 +66,23 @@ public:
 
 #pragma mark - Template Instantiations
 
-template void DinnerViewModel::Execute<SetTableCommand>(const shared_ptr<SetTableCommand> &command);
 template void DinnerViewModel::Begin<DineCommand>(const shared_ptr<DineCommand> &command);
+template void DinnerViewModel::Execute<SetTableCommand>(const shared_ptr<SetTableCommand> &command);
 
-#pragma mark - Proxy to ViewModelImpl
+#pragma mark - Proxy to CommandReceiverImpl
 
+template<>
 template<class T>
-void DinnerViewModel::Execute(const shared_ptr<T> &command)
+void CommandReceiver<DinnerViewModel>::Execute(const shared_ptr<T> &command)
 {
-    dynamic_cast<ViewModelImpl *>(this)->ExecuteImpl<DinnerViewModelImpl, T>(command);
+    dynamic_cast<CommandReceiverImpl *>(this)->DinnerViewModelImpl::ExecuteImpl<DinnerViewModelImpl, T>(command);
 }
 
+template<>
 template<class T>
-void DinnerViewModel::Begin(const shared_ptr<T> &command)
+void CommandReceiver<DinnerViewModel>::Begin(const shared_ptr<T> &command)
 {
-    dynamic_cast<ViewModelImpl *>(this)->BeginImpl<DinnerViewModelImpl, T>(command);
+    dynamic_cast<CommandReceiverImpl *>(this)->BeginImpl<DinnerViewModelImpl, T>(command);
 }
 
 #pragma mark - Factory

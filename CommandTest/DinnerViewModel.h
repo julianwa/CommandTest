@@ -11,18 +11,15 @@
 #include "ViewModel.h"
 #include <boost/mpl/set.hpp>
 #include "MealCommands.h"
+#include "CommandReceiver.h"
 
-class DinnerViewModel : public virtual ViewModel
+class DinnerViewModel
+: public virtual ViewModel
+, public virtual CommandReceiver<DinnerViewModel>
 {
 public:
     
     using Commands = boost::mpl::set<SetTableCommand>;
-    
-    template<class T>
-    void Execute(const std::shared_ptr<T> &command);
-    
-    template<class T>
-    void Begin(const std::shared_ptr<T> &command);
     
     static std::shared_ptr<DinnerViewModel> New();
 };

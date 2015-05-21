@@ -12,7 +12,7 @@
 
 class BreakfastViewModelImpl
 : public virtual BreakfastViewModel
-, public virtual ViewModelImpl
+, public virtual ViewModelImpl<BreakfastViewModelImpl>
 {
 public:
     
@@ -21,19 +21,37 @@ public:
         return "Breakfast";
     }
     
+#pragma mark - BlockMode
+    
+    ViewModelBlockMode BlockModeForCommandType(type_index type)
+    {
+        return ViewModelBlockMode::None;
+    }
+    
+#pragma mark -
+    
     void Execute(const shared_ptr<SetTableCommand> &command)
     {
         printf("Set the table for breakfast\n");
     }
+    
+    
 };
+
+#pragma mark - Template Instantiations
 
 template void BreakfastViewModel::Execute<SetTableCommand>(const shared_ptr<SetTableCommand> &command);
 
+#pragma mark - Proxy to CommandReceiverImpl
+
+template<>
 template<class T>
-void BreakfastViewModel::Execute(const shared_ptr<T> &command)
+void CommandReceiver<BreakfastViewModel>::Execute(const shared_ptr<T> &command)
 {
-    dynamic_cast<ViewModelImpl *>(this)->ExecuteImpl<BreakfastViewModelImpl, T>(command);
+    dynamic_cast<CommandReceiverImpl *>(this)->ExecuteImpl<BreakfastViewModelImpl, T>(command);
 }
+
+#pragma mark - Factory
 
 shared_ptr<BreakfastViewModel> BreakfastViewModel::New()
 {

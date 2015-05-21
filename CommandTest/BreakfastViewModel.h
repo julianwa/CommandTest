@@ -8,17 +8,14 @@
 
 #pragma once
 
+#include "CommandReceiver.h"
 #include "ViewModel.h"
 
-class BreakfastViewModel : public virtual ViewModel
+class BreakfastViewModel
+: public virtual ViewModel
+, public virtual CommandReceiver<BreakfastViewModel>
 {
 public:
-    
-    template<class T>
-    void Execute(const std::shared_ptr<T> &command);
-    
-    template<class T>
-    void Begin(const std::shared_ptr<T> &command);
     
     static std::shared_ptr<BreakfastViewModel> New();
 };

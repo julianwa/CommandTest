@@ -8,6 +8,7 @@
 
 #include "ViewModel.h"
 #include "Command.h"
+#include "CommandReceiverImpl.hpp"
 #include <map>
 #include <typeindex>
 #include <typeinfo>
@@ -15,12 +16,12 @@
 
 using namespace std;
 
+template<class T>
 class ViewModelImpl
 : public virtual ViewModel
-, public std::enable_shared_from_this<ViewModelImpl>
+, public virtual CommandReceiverImpl
 {
     ViewModelBlockMode _BlockMode;
-    unordered_map<std::type_index, shared_ptr<ContinuousCommand>> _CurrentCommands;
     
 public:
     
@@ -34,13 +35,11 @@ public:
         return _BlockMode;
     }
     
-    template <class ViewModelT>
-    void UpdateBlockMode()
+    void ExecutingCommandsDidChange(const CommandReceiverImpl::ExecutingCommands &executingCommands)
     {
-        auto viewModel = dynamic_pointer_cast<ViewModelT>(shared_from_this());
-        printf("Num executing commands: %zu\n", _CurrentCommands.size());
+        auto viewModel = dynamic_pointer_cast<T>(shared_from_this());
         ViewModelBlockMode result = ViewModelBlockMode::None;
-        for (auto commandEntry : _CurrentCommands) {
+        for (auto commandEntry : executingCommands) {
             auto mode = viewModel->BlockModeForCommandType(commandEntry.first);
             if (mode > result) {
                 result = mode;
@@ -48,51 +47,5 @@ public:
         }
         _BlockMode = result;
     }
-    
-    template<class ViewModelT, class CommandT>
-    void ExecuteImpl(const shared_ptr<CommandT> &command)
-    {
-        dynamic_cast<ViewModelT *>(this)->Execute(command);
-    }
-    
-    template<class ViewModelT, class CommandT>
-    void BeginImpl(const shared_ptr<CommandT> &command)
-    {
-        auto viewModel = dynamic_pointer_cast<ViewModelT>(shared_from_this());
 
-        weak_ptr<ViewModelT> weakViewModel = viewModel;
-        weak_ptr<CommandT> weakCommand = command;
-        
-        // Wire up the End method
-        command->End = [weakViewModel, weakCommand] {
-            auto viewModel = weakViewModel.lock();
-            auto command = weakCommand.lock();
-            if (viewModel && command) {
-                viewModel->End(command);
-                
-                command->SetWasEnded();
-                viewModel->_CurrentCommands.erase(typeid(*command));
-                viewModel->template UpdateBlockMode<ViewModelT>();
-            }
-        };
-        
-        // Wire up the Cancel method
-        command->Cancel = [weakViewModel, weakCommand] {
-            auto viewModel = weakViewModel.lock();
-            auto command = weakCommand.lock();
-            if (viewModel && command) {
-                viewModel->Cancel(command);
-        
-                command->SetWasCancelled();
-                viewModel->_CurrentCommands.erase(typeid(*command));
-                viewModel->template UpdateBlockMode<ViewModelT>();
-            }
-        };
-        
-        viewModel->Begin(command);
-        
-        command->SetWasBegan();
-        viewModel->_CurrentCommands[typeid(*command)] = static_pointer_cast<ContinuousCommand>(command);
-        viewModel->template UpdateBlockMode<ViewModelT>();
-    }
 };

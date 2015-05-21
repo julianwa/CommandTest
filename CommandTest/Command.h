@@ -13,9 +13,8 @@
 
 class Command
 {
-    virtual std::string Name() {
-        return "name";
-    }
+public:
+    virtual ~Command() {}
 };
 
 class ContinuousCommand
@@ -33,7 +32,7 @@ public:
     {
     }
     
-    ~ContinuousCommand()
+    virtual ~ContinuousCommand()
     {
         assert(!_WasBegan || (_WasCancelled || _WasEnded));
     }
