@@ -9,10 +9,14 @@
 #pragma once
 
 #include "ViewModel.h"
+#include <boost/mpl/set.hpp>
+#include "MealCommands.h"
 
 class DinnerViewModel : public virtual ViewModel
 {
 public:
+    
+    using Commands = boost::mpl::set<SetTableCommand>;
     
     template<class T>
     void Execute(const std::shared_ptr<T> &command);

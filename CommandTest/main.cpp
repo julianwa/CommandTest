@@ -12,8 +12,18 @@
 #include "BreakfastViewModel.h"
 #include "MealCommands.h"
 #include "CommandDispatcher.h"
+#include <boost/mpl/for_each.hpp>
 
 using namespace std;
+
+struct ExtractCommand
+{
+    template< typename U > void operator()(U x)
+    {
+        std::cout << "Discovered command: " << typeid(x).name() << std::endl;
+        CommandDispatcher::Instance()->Dispatch(make_shared<U>());
+    }
+};
 
 int main(int argc, const char * argv[]) {
 
@@ -49,6 +59,8 @@ int main(int argc, const char * argv[]) {
         CommandDispatcher::Instance()->RegisterReceiver<SetTableCommand>(dinner);
         
         CommandDispatcher::Instance()->Dispatch(make_shared<SetTableCommand>());
+        
+        boost::mpl::for_each<DinnerViewModel::Commands>(ExtractCommand());
     }
     
     return 0;
