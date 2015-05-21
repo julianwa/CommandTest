@@ -10,7 +10,7 @@
 
 using namespace std;
 
-shared_ptr<CommandDispatcher> CommandDispatcher::Instance()
+shared_ptr<CommandDispatcher> CommandDispatcher::GlobalDispatcher()
 {
     static shared_ptr<CommandDispatcher> instance;
     if (!instance) {

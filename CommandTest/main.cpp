@@ -21,7 +21,7 @@ struct ExtractCommand
     template< typename U > void operator()(U x)
     {
         std::cout << "Discovered command: " << typeid(x).name() << std::endl;
-        CommandDispatcher::Instance()->Dispatch(make_shared<U>());
+        CommandDispatcher::GlobalDispatcher()->Dispatch(make_shared<U>());
     }
 };
 
@@ -53,12 +53,12 @@ int main(int argc, const char * argv[]) {
     
     {
         auto breakfast = BreakfastViewModel::New();
-        CommandDispatcher::Instance()->RegisterReceiver<SetTableCommand>(breakfast);
+        CommandDispatcher::GlobalDispatcher()->RegisterReceiver<SetTableCommand>(breakfast);
         
         auto dinner = DinnerViewModel::New();
-        CommandDispatcher::Instance()->RegisterReceiver<SetTableCommand>(dinner);
+        CommandDispatcher::GlobalDispatcher()->RegisterReceiver<SetTableCommand>(dinner);
         
-        CommandDispatcher::Instance()->Dispatch(make_shared<SetTableCommand>());
+        CommandDispatcher::GlobalDispatcher()->Dispatch(make_shared<SetTableCommand>());
         
         boost::mpl::for_each<DinnerViewModel::Commands>(ExtractCommand());
     }

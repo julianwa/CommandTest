@@ -62,7 +62,7 @@ public:
         }
     }
     
-    static std::shared_ptr<CommandDispatcher> Instance();
+    static std::shared_ptr<CommandDispatcher> GlobalDispatcher();
 };
 
 
