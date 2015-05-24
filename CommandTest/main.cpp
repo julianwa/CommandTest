@@ -45,8 +45,16 @@ int main(int argc, const char * argv[]) {
         assert(dinner->BlockMode() == ViewModelBlockMode::Edit);
         
         dineCommand->End();
-        //dineCommand->Cancel();
         assert(dinner->BlockMode() == ViewModelBlockMode::None);
+    }
+    
+    printf("-------------\n");
+    
+    {
+        auto dinner = DinnerViewModel::New();
+        auto setTable = CommandBinding::New(dinner,
+                                            make_shared<SetTableCommand>());
+        setTable->Execute();
     }
     
     printf("-------------\n");
