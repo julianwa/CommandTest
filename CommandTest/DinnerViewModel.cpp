@@ -54,23 +54,9 @@ public:
     }
 };
 
-template void InstantiateCommandReceiverFunctions<DinnerViewModel>();
+#pragma mark - CommandReceiveImpl
 
-#pragma mark - Proxy to CommandReceiverImpl
-
-template<>
-template<class T>
-void CommandReceiver<DinnerViewModel>::Execute(const shared_ptr<T> &command)
-{
-    dynamic_cast<CommandReceiverImpl *>(this)->ExecuteImpl<DinnerViewModelImpl, T>(command);
-}
-
-template<>
-template<class T>
-void CommandReceiver<DinnerViewModel>::Begin(const shared_ptr<T> &command)
-{
-    dynamic_cast<CommandReceiverImpl *>(this)->BeginImpl<DinnerViewModelImpl, T>(command);
-}
+COMMAND_RECEIVER_IMPL(DinnerViewModel)
 
 #pragma mark - Factory
 

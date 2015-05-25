@@ -31,18 +31,9 @@ public:
     }
 };
 
-#pragma mark - Template Instantiations
+#pragma mark - CommandReceiveImpl
 
-template void InstantiateCommandReceiverFunctions<BreakfastViewModel>();
-
-#pragma mark - Proxy to CommandReceiverImpl
-
-template<>
-template<class T>
-void CommandReceiver<BreakfastViewModel>::Execute(const shared_ptr<T> &command)
-{
-    dynamic_cast<CommandReceiverImpl *>(this)->ExecuteImpl<BreakfastViewModelImpl, T>(command);
-}
+COMMAND_RECEIVER_IMPL(BreakfastViewModel)
 
 #pragma mark - Factory
 

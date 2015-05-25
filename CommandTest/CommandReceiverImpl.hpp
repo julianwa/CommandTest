@@ -123,4 +123,24 @@ void InstantiateCommandReceiverFunctions()
     , typename boost::mpl::end<typename T::ContinuousCommands>::type>();
 }
 
+#pragma mark - 
+
+#define COMMAND_RECEIVER_IMPL(ViewModelType)                                                        \
+                                                                                                    \
+template void InstantiateCommandReceiverFunctions<ViewModelType>();                                 \
+                                                                                                    \
+template<>                                                                                          \
+template<class T>                                                                                   \
+void CommandReceiver<ViewModelType>::Execute(const shared_ptr<T> &command)                          \
+{                                                                                                   \
+    dynamic_cast<CommandReceiverImpl *>(this)->ExecuteImpl<ViewModelType##Impl, T>(command);        \
+}                                                                                                   \
+                                                                                                    \
+template<>                                                                                          \
+template<class T>                                                                                   \
+void CommandReceiver<ViewModelType>::Begin(const shared_ptr<T> &command)                            \
+{                                                                                                   \
+    dynamic_cast<CommandReceiverImpl *>(this)->BeginImpl<ViewModelType##Impl, T>(command);          \
+}                                                                                                   \
+
 
