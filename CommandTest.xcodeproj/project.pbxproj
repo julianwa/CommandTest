@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3C48F88B1B042C1400F306D8 /* DinnerViewModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C48F8891B042C1400F306D8 /* DinnerViewModel.cpp */; };
 		3C48F88E1B042D4600F306D8 /* BreakfastViewModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C48F88C1B042D4600F306D8 /* BreakfastViewModel.cpp */; };
+		3CA070701B139A6F00E9426C /* PolymorphismTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CA0706F1B139A6F00E9426C /* PolymorphismTest.cpp */; };
 		3CDE46EA1B04061F00AAF586 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CDE46E91B04061F00AAF586 /* main.cpp */; };
 		3CEFFCF91B0C4D180075A8CB /* CommandDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CEFFCF81B0C4D180075A8CB /* CommandDispatcher.cpp */; };
 /* End PBXBuildFile section */
@@ -37,6 +38,7 @@
 		3C5209A31B0D7B6200D83ECC /* CommandReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandReceiver.h; sourceTree = "<group>"; };
 		3C5209A51B0D856900D83ECC /* CommandReceiverImpl.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CommandReceiverImpl.hpp; sourceTree = "<group>"; };
 		3C6DE5011B0C3C1700590927 /* CommandDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandDispatcher.h; sourceTree = "<group>"; };
+		3CA0706F1B139A6F00E9426C /* PolymorphismTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PolymorphismTest.cpp; sourceTree = "<group>"; };
 		3CDE46E61B04061F00AAF586 /* CommandTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CDE46E91B04061F00AAF586 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3CEFFCF81B0C4D180075A8CB /* CommandDispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandDispatcher.cpp; sourceTree = "<group>"; };
@@ -74,6 +76,14 @@
 			name = ViewModel;
 			sourceTree = "<group>";
 		};
+		3CA0706B1B1399DC00E9426C /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3CA0706F1B139A6F00E9426C /* PolymorphismTest.cpp */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
 		3CABE4D01B0D9D2000EA3425 /* Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,10 +115,11 @@
 		3CDE46E81B04061F00AAF586 /* CommandTest */ = {
 			isa = PBXGroup;
 			children = (
-				3CABE4D01B0D9D2000EA3425 /* Example */,
 				3C48F8911B04510500F306D8 /* Command */,
-				3C48F8921B04511200F306D8 /* ViewModel */,
+				3CABE4D01B0D9D2000EA3425 /* Example */,
 				3CDE46E91B04061F00AAF586 /* main.cpp */,
+				3CA0706B1B1399DC00E9426C /* Tests */,
+				3C48F8921B04511200F306D8 /* ViewModel */,
 			);
 			path = CommandTest;
 			sourceTree = "<group>";
@@ -169,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CA070701B139A6F00E9426C /* PolymorphismTest.cpp in Sources */,
 				3CDE46EA1B04061F00AAF586 /* main.cpp in Sources */,
 				3CEFFCF91B0C4D180075A8CB /* CommandDispatcher.cpp in Sources */,
 				3C48F88E1B042D4600F306D8 /* BreakfastViewModel.cpp in Sources */,
