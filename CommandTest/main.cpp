@@ -7,10 +7,8 @@
 //
 
 #include <iostream>
-#include <memory>
 #include "DinnerViewModel.h"
 #include "BreakfastViewModel.h"
-#include "MealCommands.h"
 #include "CommandDispatcher.h"
 #include <boost/mpl/for_each.hpp>
 

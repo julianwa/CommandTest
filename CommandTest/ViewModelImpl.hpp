@@ -7,12 +7,7 @@
 //
 
 #include "ViewModel.h"
-#include "Command.h"
 #include "CommandReceiverImpl.hpp"
-#include <map>
-#include <typeindex>
-#include <typeinfo>
-#include <unordered_map>
 
 using namespace std;
 

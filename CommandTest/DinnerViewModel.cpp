@@ -7,7 +7,6 @@
 //
 
 #include "DinnerViewModel.h"
-#include "MealCommands.h"
 #include "ViewModelImpl.hpp"
 
 using namespace std;

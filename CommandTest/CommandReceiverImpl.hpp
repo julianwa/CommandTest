@@ -8,13 +8,8 @@
 
 #pragma once
 
-#include "Command.h"
-#include <memory>
-#include <map>
 #include <typeindex>
-#include <typeinfo>
 #include <unordered_map>
-#include <boost/mpl/assert.hpp>
 #include <boost/mpl/for_each.hpp>
 
 class CommandReceiverImpl : public std::enable_shared_from_this<CommandReceiverImpl>

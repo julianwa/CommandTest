@@ -8,7 +8,6 @@
 
 #include "BreakfastViewModel.h"
 #include "ViewModelImpl.hpp"
-#include "MealCommands.h"
 
 class BreakfastViewModelImpl
 : public virtual BreakfastViewModel
