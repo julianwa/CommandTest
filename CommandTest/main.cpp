@@ -14,6 +14,8 @@
 
 using namespace std;
 
+extern void PolymorphismTest();
+
 struct ExtractCommand
 {
     template< typename U > void operator()(U x)
@@ -68,6 +70,9 @@ int main(int argc, const char * argv[]) {
         
         boost::mpl::for_each<DinnerViewModel::Commands>(ExtractCommand());
     }
+    
+    printf("-------------\n");
+    PolymorphismTest();
     
     return 0;
 }

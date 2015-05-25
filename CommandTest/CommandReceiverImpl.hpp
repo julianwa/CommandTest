@@ -11,6 +11,7 @@
 #include <typeindex>
 #include <unordered_map>
 #include <boost/mpl/for_each.hpp>
+#include "Command.h"
 
 class CommandReceiverImpl : public std::enable_shared_from_this<CommandReceiverImpl>
 {
@@ -87,7 +88,7 @@ struct InstantiateCommandFunctions
     {
         #pragma clang diagnostic push
         #pragma clang diagnostic ignored "-Wunused-value"
-        &T::template Execute<typename B::type>;
+        &T::template CommandReceiver<T>::template Execute<typename B::type>;
         #pragma clang diagnostic pop
     }
     
@@ -103,7 +104,7 @@ struct InstantiateContinuousCommandFunctions
     {
         #pragma clang diagnostic push
         #pragma clang diagnostic ignored "-Wunused-value"
-        &T::template Begin<typename B::type>;
+        &T::template CommandReceiver<T>::template Begin<typename B::type>;
         #pragma clang diagnostic pop
     }
     
@@ -126,22 +127,22 @@ void InstantiateCommandReceiverFunctions()
 
 #pragma mark - 
 
-#define COMMAND_RECEIVER_IMPL(ViewModelType)                                                        \
+#define COMMAND_RECEIVER_IMPL(CommandReceiverT)                                                     \
                                                                                                     \
-template void InstantiateCommandReceiverFunctions<ViewModelType>();                                 \
+template void InstantiateCommandReceiverFunctions<CommandReceiverT>();                              \
                                                                                                     \
 template<>                                                                                          \
 template<class T>                                                                                   \
-void CommandReceiver<ViewModelType>::Execute(const shared_ptr<T> &command)                          \
+void CommandReceiver<CommandReceiverT>::Execute(const shared_ptr<T> &command)                       \
 {                                                                                                   \
-    dynamic_cast<CommandReceiverImpl *>(this)->ExecuteImpl<ViewModelType##Impl, T>(command);        \
+    dynamic_cast<CommandReceiverImpl *>(this)->ExecuteImpl<CommandReceiverT##Impl, T>(command);     \
 }                                                                                                   \
                                                                                                     \
 template<>                                                                                          \
 template<class T>                                                                                   \
-void CommandReceiver<ViewModelType>::Begin(const shared_ptr<T> &command)                            \
+void CommandReceiver<CommandReceiverT>::Begin(const shared_ptr<T> &command)                         \
 {                                                                                                   \
-    dynamic_cast<CommandReceiverImpl *>(this)->BeginImpl<ViewModelType##Impl, T>(command);          \
+    dynamic_cast<CommandReceiverImpl *>(this)->BeginImpl<CommandReceiverT##Impl, T>(command);       \
 }                                                                                                   \
 
 
