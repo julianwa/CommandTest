@@ -10,12 +10,15 @@
 
 #include "CommandReceiver.h"
 #include "ViewModel.h"
+#include "MealCommands.h"
 
 class BreakfastViewModel
 : public virtual ViewModel
 , public virtual CommandReceiver<BreakfastViewModel>
 {
 public:
+    
+    using Commands = boost::mpl::set<SetTableCommand>;
     
     static std::shared_ptr<BreakfastViewModel> New();
 };

@@ -20,9 +20,10 @@ enum ViewModelBlockMode
 
 class ViewModel
 {
+protected:
+    virtual ~ViewModel() {}
+    
 public:
     
     virtual ViewModelBlockMode BlockMode() = 0;
-    
-    virtual std::string Name() = 0;
 };

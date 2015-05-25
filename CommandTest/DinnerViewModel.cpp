@@ -11,8 +11,6 @@
 #include "CommandReceiverImpl.hpp"
 #include "ViewModelImpl.hpp"
 
-
-
 using namespace std;
 
 class DinnerViewModelImpl
@@ -20,13 +18,6 @@ class DinnerViewModelImpl
 , public virtual ViewModelImpl<DinnerViewModelImpl>
 {
 public:
-    
-#pragma mark - ViewModel
-    
-    string Name() override
-    {
-        return "Dinner";
-    }
     
 #pragma mark - BlockMode
     

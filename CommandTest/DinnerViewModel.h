@@ -9,7 +9,6 @@
 #pragma once
 
 #include "ViewModel.h"
-#include <boost/mpl/set.hpp>
 #include "MealCommands.h"
 #include "CommandReceiver.h"
 
@@ -20,6 +19,7 @@ class DinnerViewModel
 public:
     
     using Commands = boost::mpl::set<SetTableCommand>;
+    using ContinuousCommands = boost::mpl::set<DineCommand>;
     
     static std::shared_ptr<DinnerViewModel> New();
 };

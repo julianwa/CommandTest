@@ -9,6 +9,7 @@
 #pragma once
 
 #import <memory>
+#include <boost/mpl/set.hpp>
 
 template<class ReceiverT>
 class CommandReceiver

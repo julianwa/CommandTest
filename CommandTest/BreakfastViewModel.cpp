@@ -16,11 +16,6 @@ class BreakfastViewModelImpl
 {
 public:
     
-    string Name() override
-    {
-        return "Breakfast";
-    }
-    
 #pragma mark - BlockMode
     
     ViewModelBlockMode BlockModeForCommandType(type_index type)
