@@ -85,7 +85,10 @@ struct InstantiateCommandFunctions
 {
     InstantiateCommandFunctions()
     {
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Wunused-value"
         &T::template Execute<typename B::type>;
+        #pragma clang diagnostic pop
     }
     
     InstantiateCommandFunctions<T, typename boost::mpl::next<B>::type, E> next;
@@ -98,7 +101,10 @@ struct InstantiateContinuousCommandFunctions
 {
     InstantiateContinuousCommandFunctions()
     {
+        #pragma clang diagnostic push
+        #pragma clang diagnostic ignored "-Wunused-value"
         &T::template Begin<typename B::type>;
+        #pragma clang diagnostic pop
     }
     
     InstantiateCommandFunctions<T, typename boost::mpl::next<B>::type, E> next;
