@@ -26,7 +26,7 @@ public:
     
     void HandleExecute(const shared_ptr<SetTableCommand> &command)
     {
-        printf("Set the table for breakfast\n");
+        printf("  Set the table for breakfast\n");
     }
 };
 

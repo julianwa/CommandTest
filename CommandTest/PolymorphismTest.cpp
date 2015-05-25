@@ -74,11 +74,16 @@ COMMAND_RECEIVER_IMPL(DerivedClass);
 
 void PolymorphismTest()
 {
-    printf("PolymorphismTest\n\n");
+    printf("PolymorphismTest\n");
+    printf("-------------\n");
 
     printf("Executing command against derived class:\n");
     shared_ptr<DerivedClass> derivedClass = make_shared<DerivedClassImpl>();
     derivedClass->CommandReceiver<DerivedClass>::Execute(make_shared<TestCommand>());
+    
+    // Output:
+    //   BaseClassImpl did execute TestCommand
+    //   DerivedClassImpl did execute TestCommand
     
     printf("\n");
     
@@ -86,8 +91,15 @@ void PolymorphismTest()
     shared_ptr<BaseClass> baseClass = static_pointer_cast<BaseClass>(derivedClass);
     baseClass->Execute(make_shared<TestCommand>());
     
+    // Output:
+    //   BaseClassImpl did execute TestCommand
+    //   DerivedClassImpl did execute TestCommand
+    
     printf ("\n");
     
     printf("Execting derived-only command against dervied class:\n");
     derivedClass->CommandReceiver<DerivedClass>::Execute(make_shared<OnlyDerivedTestCommand>());
+    
+    // Output:
+    //   DerivedClassImpl did execute OnlyDerivedTestCommand
 }

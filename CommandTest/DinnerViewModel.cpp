@@ -32,24 +32,24 @@ public:
     
     void HandleExecute(const shared_ptr<SetTableCommand> &command)
     {
-        printf("Set the table for dinner\n");
+        printf("  Set the table for dinner\n");
     }
     
 #pragma mark - DineCommand
     
     void HandleBegin(const shared_ptr<DineCommand> &command)
     {
-        printf("Beginning dinner\n");
+        printf("  Beginning dinner\n");
     }
     
     void HandleEnd(const shared_ptr<DineCommand> &command)
     {
-        printf("Dinner finished. The %s was lovely.\n", command->MainCourse.c_str());
+        printf("  Dinner finished. The %s was lovely.\n", command->MainCourse.c_str());
     }
     
     void HandleCancel(const shared_ptr<DineCommand> &command)
     {
-        printf("Dinner ended early. Druncle at it again.\n");
+        printf("  Dinner ended early. We'll save the %s for later.\n", command->MainCourse.c_str());
     }
 };
 
