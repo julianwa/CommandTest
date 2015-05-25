@@ -8,7 +8,6 @@
 
 #include "DinnerViewModel.h"
 #include "MealCommands.h"
-#include "CommandReceiverImpl.hpp"
 #include "ViewModelImpl.hpp"
 
 using namespace std;
@@ -55,10 +54,7 @@ public:
     }
 };
 
-#pragma mark - Template Instantiations
-
-template void DinnerViewModel::Begin<DineCommand>(const shared_ptr<DineCommand> &command);
-template void DinnerViewModel::Execute<SetTableCommand>(const shared_ptr<SetTableCommand> &command);
+template void InstantiateCommandReceiverFunctions<DinnerViewModel>();
 
 #pragma mark - Proxy to CommandReceiverImpl
 
@@ -66,7 +62,7 @@ template<>
 template<class T>
 void CommandReceiver<DinnerViewModel>::Execute(const shared_ptr<T> &command)
 {
-    dynamic_cast<CommandReceiverImpl *>(this)->DinnerViewModelImpl::ExecuteImpl<DinnerViewModelImpl, T>(command);
+    dynamic_cast<CommandReceiverImpl *>(this)->ExecuteImpl<DinnerViewModelImpl, T>(command);
 }
 
 template<>

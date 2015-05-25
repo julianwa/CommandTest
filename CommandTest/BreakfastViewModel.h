@@ -19,6 +19,7 @@ class BreakfastViewModel
 public:
     
     using Commands = boost::mpl::set<SetTableCommand>;
+    using ContinuousCommands = boost::mpl::set<>;
     
     static std::shared_ptr<BreakfastViewModel> New();
 };

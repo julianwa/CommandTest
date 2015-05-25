@@ -15,6 +15,7 @@
 #include <typeinfo>
 #include <unordered_map>
 #include <boost/mpl/assert.hpp>
+#include <boost/mpl/for_each.hpp>
 
 class CommandReceiverImpl : public std::enable_shared_from_this<CommandReceiverImpl>
 {
@@ -81,5 +82,45 @@ public:
         receiver->ExecutingCommandsDidChange(receiver->_ExecutingCommands);
     }
 };
+
+#pragma mark - Template Instantiations
+
+template<class T, typename B, typename E>
+struct InstantiateCommandFunctions
+{
+    InstantiateCommandFunctions()
+    {
+        &T::template Execute<typename B::type>;
+    }
+    
+    InstantiateCommandFunctions<T, typename boost::mpl::next<B>::type, E> next;
+};
+template<class T, typename E>
+struct InstantiateCommandFunctions<T, E, E> {};
+
+template<class T, typename B, typename E>
+struct InstantiateContinuousCommandFunctions
+{
+    InstantiateContinuousCommandFunctions()
+    {
+        &T::template Begin<typename B::type>;
+    }
+    
+    InstantiateCommandFunctions<T, typename boost::mpl::next<B>::type, E> next;
+};
+template<class T, typename E>
+struct InstantiateContinuousCommandFunctions<T, E, E> {};
+
+template<class T>
+void InstantiateCommandReceiverFunctions()
+{
+    InstantiateCommandFunctions<T
+    , typename boost::mpl::begin<typename T::Commands>::type
+    , typename boost::mpl::end<typename T::Commands>::type>();
+    
+    InstantiateContinuousCommandFunctions<T
+    , typename boost::mpl::begin<typename T::ContinuousCommands>::type
+    , typename boost::mpl::end<typename T::ContinuousCommands>::type>();
+}
 
 

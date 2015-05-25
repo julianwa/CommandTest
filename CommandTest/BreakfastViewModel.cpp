@@ -29,13 +29,11 @@ public:
     {
         printf("Set the table for breakfast\n");
     }
-    
-    
 };
 
 #pragma mark - Template Instantiations
 
-template void BreakfastViewModel::Execute<SetTableCommand>(const shared_ptr<SetTableCommand> &command);
+template void InstantiateCommandReceiverFunctions<BreakfastViewModel>();
 
 #pragma mark - Proxy to CommandReceiverImpl
 
