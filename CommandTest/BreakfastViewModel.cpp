@@ -25,7 +25,7 @@ public:
     
 #pragma mark -
     
-    void Execute(const shared_ptr<SetTableCommand> &command)
+    void HandleExecute(const shared_ptr<SetTableCommand> &command)
     {
         printf("Set the table for breakfast\n");
     }

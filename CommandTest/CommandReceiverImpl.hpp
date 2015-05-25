@@ -34,7 +34,7 @@ public:
         // If this assert is failing, that means someone is calling Execute on a CommandReceiver using a
         // Commnad that does not appear the in receiver's Commands set.
         BOOST_MPL_ASSERT((boost::mpl::has_key<typename CommandReceiverT::Commands, CommandT>));
-        dynamic_cast<CommandReceiverT *>(this)->Execute(command);
+        dynamic_cast<CommandReceiverT *>(this)->HandleExecute(command);
     }
     
     template<class CommandReceiverT, class CommandT>
@@ -54,7 +54,7 @@ public:
             auto receiver = weakReceiver.lock();
             auto command = weakCommand.lock();
             if (receiver && command) {
-                receiver->End(command);
+                receiver->HandleEnd(command);
                 
                 command->SetWasEnded();
                 receiver->_ExecutingCommands.erase(typeid(*command));
@@ -67,7 +67,7 @@ public:
             auto receiver = weakReceiver.lock();
             auto command = weakCommand.lock();
             if (receiver && command) {
-                receiver->Cancel(command);
+                receiver->HandleCancel(command);
                 
                 command->SetWasCancelled();
                 receiver->_ExecutingCommands.erase(typeid(*command));
@@ -75,7 +75,7 @@ public:
             }
         };
         
-        receiver->Begin(command);
+        receiver->HandleBegin(command);
         
         command->SetWasBegan();
         receiver->_ExecutingCommands[typeid(*command)] = std::static_pointer_cast<ContinuousCommand>(command);
