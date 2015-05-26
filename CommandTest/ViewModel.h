@@ -14,8 +14,8 @@
 enum ViewModelBlockMode
 {
     None = 0,
-    Navigate,
-    Edit
+    Edit,
+    EditAndNavigation
 };
 
 class ViewModel
