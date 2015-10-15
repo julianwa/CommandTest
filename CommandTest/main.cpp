@@ -7,19 +7,15 @@
 //
 
 #include <iostream>
+#include "TestReceiver.h"
 
 using namespace std;
 
-extern void ViewModelTest();
-extern void PolymorphismTest();
-
 int main(int argc, const char * argv[])
 {
-    ViewModelTest();
-    
-    printf("\n\n");
-    
-    PolymorphismTest();
+    auto receiver = TestReceiver::New();
+    auto command = make_shared<TestCommand>("this is a test");
+    receiver->Execute(command);
     
     return 0;
 }
