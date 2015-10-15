@@ -13,14 +13,17 @@ using namespace std;
 
 class TestReceiverImpl
 : public virtual TestReceiver
+, public CommandReceiverImpl
 {
 public:
+    
+    const string Name = "Receiver0";
     
 #pragma mark - TestCommand
     
     void HandleExecute(const shared_ptr<TestCommand> &command)
     {
-        printf("Message received: %s\n", command->Message.c_str());
+        printf("%s received: \"%s\"\n", Name.c_str(), command->Message.c_str());
     }
 };
 

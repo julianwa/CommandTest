@@ -135,14 +135,18 @@ template<>                                                                      
 template<class T>                                                                                   \
 void CommandReceiver<CommandReceiverT>::Execute(const shared_ptr<T> &command)                       \
 {                                                                                                   \
-    dynamic_cast<CommandReceiverImpl *>(this)->ExecuteImpl<CommandReceiverT##Impl, T>(command);     \
+    auto receiverImpl = dynamic_cast<CommandReceiverImpl *>(this);                                  \
+    assert(receiverImpl);                                                                           \
+    receiverImpl->ExecuteImpl<CommandReceiverT##Impl, T>(command);                                  \
 }                                                                                                   \
                                                                                                     \
 template<>                                                                                          \
 template<class T>                                                                                   \
 void CommandReceiver<CommandReceiverT>::Begin(const shared_ptr<T> &command)                         \
 {                                                                                                   \
-    dynamic_cast<CommandReceiverImpl *>(this)->BeginImpl<CommandReceiverT##Impl, T>(command);       \
+    auto receiverImpl = dynamic_cast<CommandReceiverImpl *>(this);                                  \
+    assert(receiverImpl);                                                                           \
+    receiverImpl->BeginImpl<CommandReceiverT##Impl, T>(command);                                    \
 }                                                                                                   \
 
 
