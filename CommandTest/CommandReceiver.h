@@ -16,6 +16,9 @@ class CommandReceiver
 {
 public:
     
+    template <typename... Args>
+    using CommandSet = boost::mpl::set<Args...>;
+    
     virtual ~CommandReceiver() {}
     
     template<class T>

@@ -16,8 +16,8 @@ class TestReceiver
 {
 public:
     
-    using Commands = boost::mpl::set<TestCommand>;
-    using ContinuousCommands = boost::mpl::set<>;
+    using Commands = CommandSet<TestCommand>;
+    using ContinuousCommands = CommandSet<>;
     
     static std::shared_ptr<TestReceiver> New();
 };
