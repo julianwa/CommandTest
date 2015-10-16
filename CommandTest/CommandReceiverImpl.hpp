@@ -125,6 +125,31 @@ void InstantiateCommandReceiverFunctions()
     , typename boost::mpl::end<typename T::ContinuousCommands>::type>();
 }
 
+#pragma mark - ConditionalCommandExecutor
+
+// Executes a command against a receiver only if that command can by cast to the given type
+template<class CommandReceiverT>
+struct ConditionalCommandExecutor
+{
+    CommandReceiver<CommandReceiverT> &_CommandReceiver;
+    const std::shared_ptr<Command> &_Command;
+    ConditionalCommandExecutor(CommandReceiver<CommandReceiverT> &commandReceiver,
+                               const std::shared_ptr<Command> &command)
+    : _CommandReceiver(commandReceiver)
+    , _Command(command)
+    {
+    }
+    
+    template<typename CommandT>
+    void operator()(CommandT x)
+    {
+        auto castCommand = std::dynamic_pointer_cast<CommandT>(_Command);
+        if (castCommand) {
+            _CommandReceiver.Execute(castCommand);
+        }
+    }
+};
+
 #pragma mark - 
 
 #define COMMAND_RECEIVER_IMPL(CommandReceiverT)                                                     \
@@ -148,5 +173,15 @@ void CommandReceiver<CommandReceiverT>::Begin(const shared_ptr<T> &command)     
     assert(receiverImpl);                                                                           \
     receiverImpl->BeginImpl<CommandReceiverT##Impl, T>(command);                                    \
 }                                                                                                   \
+                                                                                                    \
+template<>                                                                                          \
+template<>                                                                                          \
+void CommandReceiver<CommandReceiverT>::Execute(const std::shared_ptr<Command> &command)            \
+{                                                                                                   \
+    boost::mpl::for_each<typename CommandReceiverT::Commands>(                                      \
+        ConditionalCommandExecutor<CommandReceiverT>(*this, command)                                \
+    );                                                                                              \
+}
+
 
 

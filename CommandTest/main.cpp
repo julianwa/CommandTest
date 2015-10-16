@@ -7,15 +7,23 @@
 //
 
 #include <iostream>
-#include "TestReceiver.h"
+#include "Model.h"
 
 using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    auto receiver = TestReceiver::New();
-    auto command = make_shared<TestCommand>("this is a test");
-    receiver->Execute(command);
+    auto user = User::New(1);
     
+    vector<std::shared_ptr<Command>> commands = {
+        make_shared<InsertSpace>(1, 2),
+        make_shared<InsertSpace>(1, 3),
+        make_shared<InsertIdea>(3, 4)
+    };
+    
+    for (auto command : commands) {
+        user->Execute(command);
+    }
+
     return 0;
 }

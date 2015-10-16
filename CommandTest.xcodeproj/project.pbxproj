@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3C48F88B1B042C1400F306D8 /* TestReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C48F8891B042C1400F306D8 /* TestReceiver.cpp */; };
+		3C7975F11BD095CE002A0CD8 /* Space.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7975EF1BD095CE002A0CD8 /* Space.cpp */; settings = {ASSET_TAGS = (); }; };
+		3C7975F51BD09639002A0CD8 /* User.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C7975F31BD09639002A0CD8 /* User.cpp */; settings = {ASSET_TAGS = (); }; };
 		3CDE46EA1B04061F00AAF586 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3CDE46E91B04061F00AAF586 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,12 @@
 		3C48F8901B042D8100F306D8 /* Command.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Command.h; sourceTree = "<group>"; };
 		3C5209A31B0D7B6200D83ECC /* CommandReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandReceiver.h; sourceTree = "<group>"; };
 		3C5209A51B0D856900D83ECC /* CommandReceiverImpl.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CommandReceiverImpl.hpp; sourceTree = "<group>"; };
+		3C7975EF1BD095CE002A0CD8 /* Space.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Space.cpp; path = Model/Space.cpp; sourceTree = "<group>"; };
+		3C7975F01BD095CE002A0CD8 /* Space.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Space.h; path = Model/Space.h; sourceTree = "<group>"; };
+		3C7975F21BD095FA002A0CD8 /* ModelCommands.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ModelCommands.h; path = Model/ModelCommands.h; sourceTree = "<group>"; };
+		3C7975F31BD09639002A0CD8 /* User.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = User.cpp; path = Model/User.cpp; sourceTree = "<group>"; };
+		3C7975F41BD09639002A0CD8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Model/User.h; sourceTree = "<group>"; };
+		3C7975F61BD09733002A0CD8 /* Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Model.h; path = Model/Model.h; sourceTree = "<group>"; };
 		3CDE46E61B04061F00AAF586 /* CommandTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CDE46E91B04061F00AAF586 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,6 +61,19 @@
 				3C5209A51B0D856900D83ECC /* CommandReceiverImpl.hpp */,
 			);
 			name = Command;
+			sourceTree = "<group>";
+		};
+		3C7975EE1BD095AF002A0CD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3C7975EF1BD095CE002A0CD8 /* Space.cpp */,
+				3C7975F01BD095CE002A0CD8 /* Space.h */,
+				3C7975F21BD095FA002A0CD8 /* ModelCommands.h */,
+				3C7975F31BD09639002A0CD8 /* User.cpp */,
+				3C7975F41BD09639002A0CD8 /* User.h */,
+				3C7975F61BD09733002A0CD8 /* Model.h */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		3CA0706B1B1399DC00E9426C /* Tests */ = {
@@ -92,6 +113,7 @@
 		3CDE46E81B04061F00AAF586 /* CommandTest */ = {
 			isa = PBXGroup;
 			children = (
+				3C7975EE1BD095AF002A0CD8 /* Model */,
 				3C48F8911B04510500F306D8 /* Command */,
 				3CA0706B1B1399DC00E9426C /* Tests */,
 				3CDE46E91B04061F00AAF586 /* main.cpp */,
@@ -155,8 +177,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C7975F51BD09639002A0CD8 /* User.cpp in Sources */,
 				3C48F88B1B042C1400F306D8 /* TestReceiver.cpp in Sources */,
 				3CDE46EA1B04061F00AAF586 /* main.cpp in Sources */,
+				3C7975F11BD095CE002A0CD8 /* Space.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

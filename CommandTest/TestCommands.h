@@ -14,6 +14,8 @@
 struct TestCommand : public Command
 {
     const std::string Message;
+    
+    TestCommand() : Message("") {}
 
     TestCommand(std::string message) : Message(message) {}
 };
