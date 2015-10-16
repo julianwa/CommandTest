@@ -66,18 +66,11 @@
 		3CA070711B13AC7C00E9426C /* ViewModelTest */ = {
 			isa = PBXGroup;
 			children = (
+				3C48F88F1B042D5C00F306D8 /* TestCommands.h */,
 				3C48F8891B042C1400F306D8 /* TestReceiver.cpp */,
 				3C48F88A1B042C1400F306D8 /* TestReceiver.h */,
-				3C48F88F1B042D5C00F306D8 /* TestCommands.h */,
 			);
 			name = ViewModelTest;
-			sourceTree = "<group>";
-		};
-		3CABE4D01B0D9D2000EA3425 /* Example */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Example;
 			sourceTree = "<group>";
 		};
 		3CDE46DD1B04061F00AAF586 = {
@@ -100,9 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				3C48F8911B04510500F306D8 /* Command */,
-				3CABE4D01B0D9D2000EA3425 /* Example */,
-				3CDE46E91B04061F00AAF586 /* main.cpp */,
 				3CA0706B1B1399DC00E9426C /* Tests */,
+				3CDE46E91B04061F00AAF586 /* main.cpp */,
 			);
 			path = CommandTest;
 			sourceTree = "<group>";
@@ -163,8 +155,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CDE46EA1B04061F00AAF586 /* main.cpp in Sources */,
 				3C48F88B1B042C1400F306D8 /* TestReceiver.cpp in Sources */,
+				3CDE46EA1B04061F00AAF586 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
