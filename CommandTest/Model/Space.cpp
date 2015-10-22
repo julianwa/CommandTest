@@ -25,7 +25,7 @@ public:
     
     void HandleExecute(const shared_ptr<InsertIdea> &command)
     {
-        assert(0);
+        printf("Insert idea: %d\n", command->Id);
     }
 };
 
